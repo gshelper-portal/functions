@@ -1,14 +1,9 @@
 const functions = require('firebase-functions');
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send('Hello from Firebase!');
-});
+const admin = require('firebase-admin');
 
-exports.randomNumber = functions.https.onRequest((request, response) => {
-  const number = Math.round(Math.random() * 100);
-  response.send(number.toString());
-});
+admin.initializeApp();
 
-exports.sayMyName = functions.https.onCall((data, context) => {
-  return `Hello ${data.name}`;
+exports.createUserProfile = functions.https.onCall((data, context) => {
+  admin.firestore().collection('users').doc(data.uid).set(data);
 });
