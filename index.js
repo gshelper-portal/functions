@@ -1,5 +1,5 @@
 const functions = require('firebase-functions');
-var omit = require('lodash/omit');
+const omit = require('lodash/omit');
 
 const admin = require('firebase-admin');
 
