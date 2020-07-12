@@ -12,3 +12,11 @@ exports.updateUserProfile = functions.https.onCall((data, context) => {
     .doc(data.uid)
     .set(omit(data, ['uid']));
 });
+
+exports.addCustomer = functions.https.onCall((data, context) => {
+  admin
+    .firestore()
+    .collection('customers')
+    .doc(data.uid)
+    .set({ supplier: data.supplier, status: 'REQUESTED' });
+});
